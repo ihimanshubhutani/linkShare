@@ -11,10 +11,14 @@
     "type": "git",
     "url": "git+https://github.com/ihimanshubhutani/linkShare.git"
   },
-  "author": "",
+  "author": "Himanshu",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ihimanshubhutani/linkShare/issues"
   },
-  "homepage": "https://github.com/ihimanshubhutani/linkShare#readme"
+  "homepage": "https://github.com/ihimanshubhutani/linkShare#readme",
+  "dependencies": {
+    "express": "*",
+    "socket.io": "^2.3.0"
+  }
 }
