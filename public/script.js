@@ -1,4 +1,4 @@
-const socket = io('http://shortconnect.herokuapp.com')
+const socket = io('http://showlink.herokuapp.com')
 const messageContainer = document.getElementById('message-container')
 const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
