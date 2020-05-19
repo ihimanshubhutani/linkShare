@@ -14,6 +14,10 @@ io.sockets.on('connection', socket => {
     connection.push(socket);
   
   socket.on('new-user',data => {
+    console.log('new user joined');
+    console.log(data);
+    console.log(data.room);
+
     socket.join(data.room);
     users[socket.id] = data.name;
     io.sockets.to(data.room).emit('user-connected', data.name)
@@ -21,7 +25,7 @@ io.sockets.on('connection', socket => {
 
 
   socket.on('send-chat-message', data => {
-
+    console.log('send-chatmessage');
     console.log(data);
     io.sockets.to(data.room).emit('chat-message', { message: data.message, name: users[socket.id] })
   })
