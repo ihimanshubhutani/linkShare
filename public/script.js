@@ -1,4 +1,4 @@
-const socket = io('http://showlink.herokuapp.com')
+const socket = io('https://showlink.herokuapp.com')
 const messageContainer = document.getElementById('message-container')
 const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
@@ -254,7 +254,7 @@ function onSwipe(ev) {
       let link= document.getElementById('link').value;
 
       socket.emit('send-chat-message', {message:link,room:toWhom})
-
+      link.value="";
 
     clearTimeout(timer);
     timer = setTimeout(function () {

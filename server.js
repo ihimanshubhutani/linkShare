@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var server = require('http').createServer(app);
+var server = require('https').createServer(app);
 const io = require('socket.io')(server)
 
 const users = {}
@@ -9,6 +9,8 @@ const connection=[];
 app.use(express.static('public'));
 
 server.listen(process.env.PORT || 3000);
+
+console.log('started');
 
 io.sockets.on('connection', socket => {
     connection.push(socket);
