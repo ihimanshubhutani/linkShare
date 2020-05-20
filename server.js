@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var server = require('https').createServer(app);
+var server = require('http').createServer(app);
 const io = require('socket.io')(server)
 
 const users = {}
