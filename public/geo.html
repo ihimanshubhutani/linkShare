@@ -16,7 +16,7 @@
     //
     function onDeviceReady() {
         // Throw an error if no update is received every 30 seconds
-        var options = { timeout: 30000 };
+        var options = { timeout: 30000 ,  enableHighAccuracy: true,};
         watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
     }
 
