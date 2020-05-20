@@ -1,44 +1,42 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Device Properties Example</title>
 
-    <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
-    <script type="text/javascript" charset="utf-8">
+<input id="latitude">
+<input id="longitude">
+<input id="acc">
 
-    // Wait for Cordova to load
-    //
-    document.addEventListener("deviceready", onDeviceReady, false);
+<script>
+var id, target, options;
 
-    var watchID = null;
+function success(pos) {
+  var crd = pos.coords;
+  document.getElementById('latitude').value=crd.latitude;
 
-    // Cordova is ready
-    //
-    function onDeviceReady() {
-        // Throw an error if no update is received every 30 seconds
-        var options = { timeout: 30000 ,  enableHighAccuracy: true,};
-        watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
-    }
+  document.getElementById('longitude').value=crd.longitude;
 
-    // onSuccess Geolocation
-    //
-    function onSuccess(position) {
-        var element = document.getElementById('geolocation');
-        element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
-                            'Longitude: ' + position.coords.longitude     + '<br />' +
-                            '<hr />'      + element.innerHTML;
-    }
+  document.getElementById('acc').value=crd.accuracy;
+  console.log(crd);
+    navigator.geolocation.clearWatch(id);
+  
 
-    // onError Callback receives a [PositionError](PositionError/positionError.html) object
-    //
-    function onError(error) {
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
-    }
+  if (target.latitude === crd.latitude && target.longitude === crd.longitude) {
+    console.log('Congratulations, you reached the target');
+    navigator.geolocation.clearWatch(id);
+  }
+}
 
-    </script>
-  </head>
-  <body>
-    <p id="geolocation">Watching geolocation...</p>
-  </body>
-</html>
+function error(err) {
+  console.warn('ERROR(' + err.code + '): ' + err.message);
+}
+
+target = {
+  latitude : 0,
+  longitude: 0
+};
+
+options = {
+  enableHighAccuracy: true,
+  timeout: 5000
+};
+
+id = navigator.geolocation.watchPosition(success, error, options);
+
+</script>
